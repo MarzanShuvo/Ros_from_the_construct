@@ -1,0 +1,35 @@
+digraph G {
+node [shape=box];
+"base_link" [label="base_link"];
+"head_link" [label="head_link"];
+"upperlegM1_link" [label="upperlegM1_link"];
+"lowerlegM1_link" [label="lowerlegM1_link"];
+"footM1_link" [label="footM1_link"];
+"upperlegM2_link" [label="upperlegM2_link"];
+"lowerlegM2_link" [label="lowerlegM2_link"];
+"footM2_link" [label="footM2_link"];
+"upperlegM3_link" [label="upperlegM3_link"];
+"lowerlegM3_link" [label="lowerlegM3_link"];
+"footM3_link" [label="footM3_link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_link" -> "fixed" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"fixed" -> "head_link"
+"head_link" -> "head_upperlegM1_joint" [label="xyz: -0.02165 -0.0125 -0.008 \nrpy: 3.14159 -2.11758e-22 0.523599"]
+"head_upperlegM1_joint" -> "upperlegM1_link"
+"upperlegM1_link" -> "upperlegM1_lowerlegM1_joint" [label="xyz: 0 0.0095 0.06 \nrpy: 0 -0 3.14159"]
+"upperlegM1_lowerlegM1_joint" -> "lowerlegM1_link"
+"lowerlegM1_link" -> "basefoot_peg_M1_basefoot_peg_M1_joint_joint" [label="xyz: 0 0 0.06 \nrpy: 0 -0 0"]
+"basefoot_peg_M1_basefoot_peg_M1_joint_joint" -> "footM1_link"
+"head_link" -> "head_upperlegM2_joint" [label="xyz: 0.02165 -0.0125 -0.008 \nrpy: 3.14159 -0 2.61799"]
+"head_upperlegM2_joint" -> "upperlegM2_link"
+"upperlegM2_link" -> "upperlegM2_lowerlegM2_joint" [label="xyz: 0 0 0.06 \nrpy: 0 -0 0"]
+"upperlegM2_lowerlegM2_joint" -> "lowerlegM2_link"
+"lowerlegM2_link" -> "basefoot_peg_M2_basefoot_peg_M2_joint_joint" [label="xyz: 0 0 0.06 \nrpy: 0 -0 0"]
+"basefoot_peg_M2_basefoot_peg_M2_joint_joint" -> "footM2_link"
+"head_link" -> "head_upperlegM3_joint" [label="xyz: 0 0.025 -0.008 \nrpy: 3.14159 -0 -1.5708"]
+"head_upperlegM3_joint" -> "upperlegM3_link"
+"upperlegM3_link" -> "upperlegM3_lowerlegM3_joint" [label="xyz: 0 0 0.06 \nrpy: 0 -0 0"]
+"upperlegM3_lowerlegM3_joint" -> "lowerlegM3_link"
+"lowerlegM3_link" -> "basefoot_peg_M3_basefoot_peg_M3_joint_joint" [label="xyz: 0 0 0.06 \nrpy: 0 -0 0"]
+"basefoot_peg_M3_basefoot_peg_M3_joint_joint" -> "footM3_link"
+}

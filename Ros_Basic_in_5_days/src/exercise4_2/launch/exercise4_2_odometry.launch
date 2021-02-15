@@ -1,0 +1,4 @@
+<launch>
+<node pkg="exercise4_2" type="odo_subscriber.py" name="Odometry_subscriber" output="screen">
+</node>
+</launch>

@@ -1,0 +1,20 @@
+<launch>
+    <node pkg="my_turtlebot_topics"
+          type="record_odom_action_server.py"
+          name="record_odom_action_server_node"
+          output="screen">
+    </node>
+
+    <node pkg="my_turtlebot_topics"
+          type="direction_service_server.py"
+          name="crash_direction_service_server"
+          output="screen">
+    </node>
+
+    <node pkg="my_turtlebot_topics"
+          type="main_program.py"
+          name="turtlebot_main_node"
+          output="screen">
+    </node>
+
+</launch>

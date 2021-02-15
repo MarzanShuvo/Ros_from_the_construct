@@ -1,0 +1,5 @@
+#goal, empty
+---
+geometry_msgs/Pose[] result_pose_array
+---
+#feedback, empty

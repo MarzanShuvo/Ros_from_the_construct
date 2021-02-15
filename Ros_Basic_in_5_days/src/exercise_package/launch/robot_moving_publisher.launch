@@ -1,0 +1,4 @@
+<launch>
+<node pkg="exercise_package" type="moving_robot.py" name="moving_robot_publisher" output="screen">
+</node>
+</launch>

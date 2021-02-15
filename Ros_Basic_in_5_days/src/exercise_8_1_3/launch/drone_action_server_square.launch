@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="exercise_8_1_3" type="drone_square_action_server.py" name="ardone_move_square" output="screen" />
+</launch>

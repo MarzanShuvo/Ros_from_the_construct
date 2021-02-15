@@ -1,0 +1,15 @@
+<launch>
+     <!-- My Package launch file -->
+    <node pkg="path_exam" type="distance_motion_service.py" name="Distance_motion_service" output="screen">
+    </node>
+
+    <node pkg="path_exam" type="check_distance_action.py" name="record_odom_action_server_node" output="screen">
+    </node>
+
+    <node pkg="path_exam" type="action_client.py" name="record_pose_action_client_node" output="screen">
+    </node>
+
+    <node pkg="path_exam" type="motion_service_client.py" name="Motion_service_client" output="screen">
+    </node> 
+
+</launch>

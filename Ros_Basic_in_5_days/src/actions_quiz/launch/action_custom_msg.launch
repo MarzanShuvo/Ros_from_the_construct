@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="actions_quiz" type="action_custom_server.py" name="ardone_action_custom_msg" output="screen" />
+</launch>

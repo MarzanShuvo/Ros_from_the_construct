@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="exercise_6_2" type="bb8_move_in_circle_service_server.py" name="service_server_bb8_circle" output="screen">
+    </node>
+</launch>
