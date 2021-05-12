@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="my_summit_localization" type="spots_to_file.py" name="spot_recorder" output="screen">
+        
+    </node>
+</launch>

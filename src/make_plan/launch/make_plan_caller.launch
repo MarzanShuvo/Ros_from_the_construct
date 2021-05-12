@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="make_plan" type="make_plan_caller.py" name="service_client" output="screen">
+        
+    </node>
+</launch>

@@ -1,0 +1,9 @@
+global_costmap:
+  global_frame: map
+  robot_base_frame: summit_xl_a_base_footprint
+  update_frequency: 5.0
+  
+  plugins:
+  - {name: static,                  type: "costmap_2d::StaticLayer"}
+  - {name: obstacles_layer,         type: "costmap_2d::VoxelLayer"}
+  - {name: inflation_layer,         type: "costmap_2d::InflationLayer"}

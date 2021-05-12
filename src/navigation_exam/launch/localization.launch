@@ -1,0 +1,13 @@
+<launch>
+  
+  <arg name="map_file" default="$(find navigation_exam)/maps/husky_map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <arg name="scan_topic" default="scan" />
+
+  <node pkg="amcl" type="amcl" name="amcl">
+    <rosparam file="$(find my_amcl_launcher)/params/my_amcl_params.yaml" command="load" />
+    <remap from="scan" to="$(arg scan_topic)"/>    
+  </node>
+
+</launch>

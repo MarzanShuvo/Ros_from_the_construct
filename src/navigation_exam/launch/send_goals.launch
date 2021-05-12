@@ -1,0 +1,9 @@
+<launch>
+    
+    <include file="$(find navigation_exam)/launch/path_planning.launch" />
+    
+    <node pkg="navigation_exam" type="send_goals.py" name="send_goals_node" output="screen">
+        
+    </node>
+    
+</launch>
