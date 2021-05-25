@@ -1,0 +1,7 @@
+<launch>
+    <!-- Start the velocities conversion program -->
+    <node pkg="convert_velocities" type="convert_vels.py" name="convert_vels_node" output="screen" />
+    
+    <!-- Start publishing Twist messages -->
+    <node pkg="convert_velocities" type="publish_vels.py" name="publish_vels_node" output="screen" />
+</launch>
