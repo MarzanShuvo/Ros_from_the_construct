@@ -1,3 +1,6 @@
 [submodule "perception_ros/my_object_recognition_pkg/config/object_base_example/bottle-classifier"]
 	path = perception_ros/my_object_recognition_pkg/config/object_base_example/bottle-classifier
 	url = https://github.com/jemgunay/bottle-classifier.git
+[submodule "perception_ros/my_object_recognition_pkg/config/object_base_example/gun_haar"]
+	path = perception_ros/my_object_recognition_pkg/config/object_base_example/gun_haar
+	url = https://github.com/Saksham00799/opencv-gun-detection
