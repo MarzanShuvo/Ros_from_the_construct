@@ -1,0 +1,4 @@
+<launch>
+    <node name="my_hexapod_line_objective" pkg="my_hexapod_perception" type="line_objective.py" output="screen">
+    </node>        
+</launch>

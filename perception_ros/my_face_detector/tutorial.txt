@@ -1,0 +1,8 @@
+The first thing to note is that this is not your run-of-the-mill RViz marker. This is because it's using the "jsk_rviz_plugins" package. 
+You will have to install this package if you want to use it outside the Ignite Academy or RDS environments. 
+These markers give a lot of functionality to RViz, and you could spend a whole course learning all the places where this can be applied. 
+You can have a look at the ROS RViz Advanced Markers course to learn more about RViz markers.
+The LaserScan and the PointCloud2 data are disconnected to avoid overflooding the PC because PCL consumes quite a lot of resources. 
+But you can activate them by simply checking the box.
+PeoplePositionMeasurementsArray: This is the blue circle drawn around the position of the face detected. It's the primary data we are looking for.
+Camera: Just the RGB camera, as a reference, where RViz superimposes the PeoplePositionMeasurementsArray data.

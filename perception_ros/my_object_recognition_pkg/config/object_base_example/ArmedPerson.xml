@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+
+<AttributeLib>
+    <Attribute Name="HaarGun" Type="HaarCascade" Cascade="gun_haar/classifier/cascade.xml"/>
+    <Attribute Name="MyBlobAttribute" Type="Blob" minThreshold="54" maxThreshold="125" blobColor="0" minArea="1500" minCircularity="0.03" minConvexity="0.64" minInertiaRatio="0.00"/>
+
+    <Attribute Name="CnnPerson" Type="Dnn" framework="tensorflow" weights="ssd_mobilenet_v1_coco_2017_11_17/frozen_inference_graph.pb" config="ssd_mobilenet_v1_coco_2017_11_17/config.pbtxt" labels="ssd_mobilenet_v1_coco_2017_11_17/mscoco_label_map.pbtxt" inputWidth="300" inputHeight="300" Probability="0.5" obj_id="1"/> 
+    
+
+</AttributeLib>
+
+<SimpleObjectBase>  
+      
+    <SimpleObject Name="HaarBlackGun" ID="3" Mode="Hard" MergingPolicy="Union">              
+        <Attribute Type="Detect">HaarGun</Attribute>
+        <Attribute Type="Detect">MyBlobAttribute</Attribute> 
+    </SimpleObject>  
+
+    <SimpleObject Name="CnnPerson" ID="67">              
+        <Attribute Type="Detect">CnnPerson</Attribute>        
+    </SimpleObject>    
+
+</SimpleObjectBase>
+
+
+<RelationLib>    
+
+        <RelationShip Type="SpaceIn" Name="in"/>
+    
+</RelationLib>
+
+
+<ComplexObjectBase>
+    
+    <ComplexObject ID="10" Name="ArmedPerson">
+        <SimpleObject Class="CnnPerson" InnerName="Person"/>
+        <SimpleObject Class="HaarBlackGun" InnerName="Gun"/>
+        
+        <Relation Obj1="Gun" Obj2="Person" Relationship="in"/>        
+        
+    </ComplexObject>
+    
+</ComplexObjectBase>

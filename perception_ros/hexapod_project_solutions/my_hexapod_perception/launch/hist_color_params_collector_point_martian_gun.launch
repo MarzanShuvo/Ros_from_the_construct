@@ -1,0 +1,9 @@
+<launch>
+    <arg name="hist_name" default="MartianGun"/>
+
+    <include file="$(find my_hexapod_perception)/launch/hist_color_params_collector_point.launch">
+        <arg name="hist_name" value="$(arg hist_name)"/>     
+    </include>
+          
+    
+</launch>

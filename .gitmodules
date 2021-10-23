@@ -1,0 +1,3 @@
+[submodule "perception_ros/my_object_recognition_pkg/config/object_base_example/bottle-classifier"]
+	path = perception_ros/my_object_recognition_pkg/config/object_base_example/bottle-classifier
+	url = https://github.com/jemgunay/bottle-classifier.git

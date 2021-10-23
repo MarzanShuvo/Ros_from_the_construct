@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+
+<AttributeLib>
+
+    <Attribute Name="HSVColorPinkDonut" Type="HSVColor" Hmin="158" Hmax="170" Smin="123" Smax="255" Vmin="193" Vmax="255"/>
+    <Attribute Name="DonutSizeAttribute" Type="Size" MinAreaPc="0.1" MaxAreaPc="100"/>
+
+    <Attribute Name="HistColorMartian" Type="HistColor" Histogram="/home/tgrip/TheConstruct/ros_playground/hexapod_ws/src/perception_course_solutions/perception_unit3_solutions/my_object_recognition_pkg/config/object_base_example/histograms/Martian.yaml"/>
+    <Attribute Name="MartianSizeAttribute" Type="Size" MinAreaPc="0.05" MaxAreaPc="100"/>
+
+
+
+    <Attribute Name="HistColorMartianGun" Type="HistColor" Histogram="/home/tgrip/TheConstruct/ros_playground/hexapod_ws/src/perception_course_solutions/perception_unit3_solutions/my_object_recognition_pkg/config/object_base_example/histograms/MartianGun.yaml"/>
+    <Attribute Name="MartianGunSizeAttribute" Type="Size" MinAreaPc="0.00" MaxAreaPc="100"/>
+
+
+
+</AttributeLib>
+
+<SimpleObjectBase>  
+
+    <SimpleObject Name="PinkDonut" ID="1">              
+        <Attribute Type="Detect">HSVColorPinkDonut</Attribute> 
+        <Attribute Type="Check">NotFractal</Attribute>
+        <Attribute Type="Check">DonutSizeAttribute</Attribute>
+    </SimpleObject>
+
+    <SimpleObject Name="Martian" ID="2">              
+        <Attribute Type="Detect">HistColorMartian</Attribute>  
+        <Attribute Type="Check">MartianSizeAttribute</Attribute>           
+    </SimpleObject>    
+      
+    <SimpleObject Name="MartianGun" ID="3">              
+        <Attribute Type="Detect">HistColorMartianGun</Attribute>  
+        <Attribute Type="Check">MartianGunSizeAttribute</Attribute>  
+    </SimpleObject>
+
+
+
+</SimpleObjectBase>
+
+
+<RelationLib>    
+
+    <RelationShip Type="SpaceRight" Name="right"/>
+    
+</RelationLib>
+
+
+<ComplexObjectBase>
+
+    <ComplexObject ID="1" Name="MartianGunRight">
+        <SimpleObject Class="Martian" InnerName="Martian_Body"/>
+        <SimpleObject Class="MartianGun" InnerName="Martian_Gun"/>
+        
+        <Relation Obj1="Martian_Body" Obj2="Martian_Gun" Relationship="right"/>        
+    </ComplexObject>
+
+    
+</ComplexObjectBase>

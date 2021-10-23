@@ -1,0 +1,68 @@
+<launch>
+    
+    <!--https://github.com/MarzanShuvo/spencer_people_tracking-->
+    <!-- Which RGB-D detector to use? Default setting (only upper-body) gives best results. Note that PCL+upper-body detector cannot be combined -->
+    <arg name="use_pcl_detector" default="false"/>
+    <arg name="use_hog_detector" default="false"/>
+    <arg name="use_upper_body_detector" default="true" unless="$(arg use_pcl_detector)"/>
+    <arg name="use_upper_body_detector" default="false"    if="$(arg use_pcl_detector)"/>
+
+    <!-- TF frame IDs used by some detectors, and tracking components -->
+    <arg name="base_footprint_frame_id" default="base_link"/>  <!-- name of the robot's base frame after projection onto the ground plane -->
+    <arg name="world_frame_id" default="map"/>  <!-- this is the fixed tracking frame -->
+
+    <arg name="visualization" default="true"/>
+    <arg name="rviz_config_file" default="$(find spencer_people_tracking_launch)/rviz/tracking-rgbd-laser.rviz"/>
+
+    
+
+    <!-- Sensors Topics-->
+    <arg name="front_laser_topic"  default="/base_scan"/>
+    <arg name="point_cloud_topic" default="/head_camera/depth_registered/points"/>
+    <arg name="camera_info_topic" default="/head_camera/rgb/camera_info"/>
+    <arg name="camera_namespace" default="/head_camera"/>
+
+    <arg name="depth_image" default="/depth_registered/image_raw" />
+    <arg name="rgb_image" default="/rgb/image_raw" />
+    <arg name="camera_info_depth" default="/depth_registered/camera_info" />
+
+    <!-- Optionally load a map to suppress false positives -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find fetch_gazebo_demo)/maps/pedestrian_world.yaml"/>
+
+
+    <!-- Detectors -->
+    <include file="$(find spencer_people_tracking_launch)/launch/detectors/front_rgbd_detectors.launch">
+        <arg name="point_cloud_topic" value="$(arg point_cloud_topic)"/>
+        <arg name="camera_info_topic" value="$(arg camera_info_topic)"/>
+        <arg name="camera_namespace" value="$(arg camera_namespace)"/>
+        <arg name="upper_body" value="$(arg use_upper_body_detector)"/>
+        <arg name="pcl_detector" value="$(arg use_pcl_detector)"/>
+        <arg name="hog" value="$(arg use_hog_detector)"/>
+        <arg name="base_footprint_frame_id" value="$(arg base_footprint_frame_id)"/>
+        <arg name="depth_image" value="$(arg depth_image)" />
+        <arg name="rgb_image" value="$(arg rgb_image)" />
+        <arg name="camera_info_depth" value="$(arg camera_info_depth)" />
+    </include>
+
+    <include file="$(find spencer_people_tracking_launch)/launch/detectors/laser_detectors.launch">
+        <arg name="rear" value="false"/>
+        <arg name="front_laser_topic" value="$(arg front_laser_topic)"/>
+        
+    </include> 
+
+
+    <!-- People tracking -->
+    <include file="$(find spencer_people_tracking_launch)/launch/tracking/freiburg_people_tracking.launch">
+        <arg name="rgbd" value="true"/>
+        <arg name="laser_low_confidence_detections" value="true"/>
+        <arg name="base_footprint_frame_id" value="$(arg base_footprint_frame_id)"/>
+        <arg name="world_frame_id" value="$(arg world_frame_id)"/>
+    </include>
+
+    <!-- Group tracking -->
+    <include file="$(find spencer_people_tracking_launch)/launch/tracking/group_tracking.launch"/> 
+
+    <!-- VISUALIZATION -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rviz_config_file)" required="false" if="$(arg visualization)"/>
+
+</launch>
